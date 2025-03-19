@@ -10,6 +10,8 @@ This project converts the [Substack API library](https://github.com/NHagar/subst
 - Get user profile information and subscriptions
 - Fetch post content and metadata
 - Search for posts within newsletters
+- **Search across multiple Substack newsletters simultaneously**
+- **Discover popular Substack newsletters by category**
 
 ## Installation
 
@@ -81,7 +83,11 @@ Once configured, you can ask Claude questions like:
 - "Show me recent posts from https://stratechery.com/"
 - "What's the content of this post: https://stratechery.com/2023/the-ai-unbundling/"
 - "Search for 'AI' on https://stratechery.com/"
+- "Search for 'AI ethics' across multiple Substack newsletters"
+- "What are popular technology newsletters on Substack?"
 - "Who are the authors of https://stratechery.com/?"
+
+See [example queries](examples/example_queries.md) for more examples.
 
 ## Available Tools
 
@@ -92,6 +98,8 @@ This MCP server provides the following tools:
 | `get_newsletter_posts` | Retrieves recent posts from a Substack newsletter |
 | `get_post_content` | Gets the full content of a specific Substack post |
 | `search_newsletter` | Searches for posts within a newsletter |
+| `search_across_substacks` | **Searches for content across multiple Substack newsletters** |
+| `discover_popular_substacks` | **Discovers popular Substack newsletters by category** |
 | `get_author_info` | Retrieves information about a Substack author |
 | `get_newsletter_recommendations` | Gets recommended newsletters for a publication |
 | `get_newsletter_authors` | Lists authors of a Substack newsletter |
@@ -105,6 +113,7 @@ substack-mcp-server/
 ├── README.md
 ├── LICENSE
 ├── requirements.txt
+├── Dockerfile
 ├── substack_mcp.py
 └── examples/
     └── example_queries.md
@@ -127,6 +136,28 @@ async def my_new_tool(param1: str, param2: int = 5) -> str:
     # Tool implementation
     return "Result"
 ```
+
+## Cross-Substack Search
+
+The `search_across_substacks` tool enables powerful research capabilities by searching multiple Substack newsletters simultaneously for specific topics. This allows for:
+
+- Discovering diverse perspectives on a topic across different authors
+- Comparing coverage of current events across publications
+- Finding the most comprehensive content on niche topics
+
+You can specify which newsletters to search or let the system use a curated list of popular newsletters. Results are organized by newsletter for easy comparison.
+
+## Substack Discovery
+
+The `discover_popular_substacks` tool helps users find new newsletters based on categories of interest. Currently supported categories include:
+
+- technology
+- politics
+- science
+- culture
+- economics
+
+This feature makes it easier to discover high-quality content creators in specific domains.
 
 ## Troubleshooting
 
